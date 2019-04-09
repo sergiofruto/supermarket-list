@@ -106,7 +106,7 @@ class App extends Component {
               );
             })}
           </List>
-          <button type="button" onClick={() => this.openModal()}>
+          <button className="Btn" type="button" onClick={() => this.openModal()}>
             open modal
           </button>
         </section>
@@ -114,21 +114,25 @@ class App extends Component {
           <div className="Overlay">
             <div className="OverlayContent">
               <h2>Add Item</h2>
-              <input
-                type="text"
-                placeholder="Type item here"
-                value={this.state.newItem}
-                onChange={e => this.updateInput("newItem", e.target.value)}
-              />
-              <button
-                onClick={() => this.addItem()}
-                disabled={!this.state.newItem.length}
-              >
-                Add
-              </button>
-              <button onClick={() => this.closeModal()}>
-                cancel
-              </button>
+              <form action="">
+                <input
+                  type="text"
+                  placeholder="Add item"
+                  value={this.state.newItem}
+                  onChange={e => this.updateInput("newItem", e.target.value)}
+                />
+                <div className="ButtonRow">
+                  <button className="Btn"
+                    onClick={() => this.addItem()}
+                    disabled={!this.state.newItem.length}
+                  >
+                    Add
+                  </button>
+                  <button className="Btn" onClick={() => this.closeModal()}>
+                    cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         }
