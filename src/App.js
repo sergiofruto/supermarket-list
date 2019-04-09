@@ -107,7 +107,7 @@ class App extends Component {
             })}
           </List>
           <button className="Btn" type="button" onClick={() => this.openModal()}>
-            open modal
+            Add Item
           </button>
         </section>
         {this.state.modalOpen &&
