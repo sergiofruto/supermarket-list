@@ -1,33 +1,85 @@
+/* App Variables */
+:root {
+  --color-gray: #F5F5F5;
+  --color-white: #FFFFFF;
+  --color-black: #222228;
+}
+
+body {
+  background-color: var(--color-gray);
+}
+
 .App {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-gray);
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Container {
+  max-width: 58rem;
+  margin: 0 auto 0;
+  padding: 6.5rem 0 0;
+}
+
+.AppHealine {
+  margin: 0;
+  font-size: 3.8rem;
+}
+
+.Counter {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 auto 4rem;
+  text-transform: uppercase;
+  color: dimgray;
+}
+
+.List {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.ListItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  margin: 0 0 1.2rem;
+  border-radius: .3rem;
+  background-color: var(--color-white);
+  box-shadow: .2rem .2rem .3rem #eee;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, .7);
+}
+
+.OverlayContent {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  padding: 1.5rem;
+  background-color: var(--color-white);
+  box-shadow: .2rem .2rem .3rem #eee;
 }
