@@ -12,7 +12,7 @@ class App extends Component {
 
     this.state = {
       list: [],
-      isLoading: false,
+      isLoading: true,
       newItem: '',
       modalOpen: false,
     };
@@ -53,15 +53,12 @@ class App extends Component {
     };
 
     addItem(newItem)
-      .then((item) => {
-        const list = [...this.state.list];
-        list.push(item);
-        this.setState({
-          list,
-          newItem: '',
-          modalOpen: false,
-        });
-      });
+      .then(item => this.setState({
+        list: [...this.state.list, item],
+        newItem: '',
+        modalOpen: false,
+      }))
+      .catch(err => this.setState({ error: err }));
   }
 
   handleDeleteItem = (id) => {
@@ -92,15 +89,15 @@ class App extends Component {
           </p>
           <List>
             {this.state.list.map(item => (
-                <ListItem
-                  key={item.id}
-                  id={item.id}
-                  value={item.value}
-                  removeItem={this.handleDeleteItem}
-                />
+              <ListItem
+                key={item.id}
+                id={item.id}
+                value={item.value}
+                removeItem={this.handleDeleteItem}
+              />
             ))}
           </List>
-          <button className="add-button" type="button" onClick={() => this.openModal()}>
+          <button className="add-button" type="button" onClick={this.openModal}>
             Add Item
           </button>
         </section>
