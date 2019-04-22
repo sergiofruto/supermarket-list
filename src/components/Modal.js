@@ -5,7 +5,7 @@ const Modal = ({
   handleAddItem,
   handleCancel,
   handleInputChange,
-  disabledButton
+  disabledButton,
 }) => (
   <div className="overlay">
     <div className="overlay-content">

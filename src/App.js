@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { getAllItems, addItem, deleteItem } from './api';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import Modal from 'components/Modal';
+import { getAllItems, addItem, deleteItem } from './api';
 import './App.css';
 
 class App extends Component {
@@ -12,74 +12,64 @@ class App extends Component {
     this.state = {
       list: [],
       isLoading: false,
-      newItem: "",
+      newItem: '',
       modalOpen: false,
     };
   }
 
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
-
-    // window.addEventListener(
-    //   "beforeunload",
-    //   this.saveStateToLocalStorage.bind(this)
-    // );
   }
 
   componentWillUnmount() {
-    // window.removeEventListener(
-    //   "beforeunload",
-    //   this.saveStateToLocalStorage.bind(this)
-    // );
-
     this.saveStateToLocalStorage();
   }
 
   hydrateStateWithLocalStorage = () => {
     getAllItems()
-    .then(list => {
-      this.setState({
-        isLoading: false,
-        list
+      .then((list) => {
+        this.setState({
+          isLoading: false,
+          list,
+        });
       });
-    })
   }
 
   saveStateToLocalStorage() {
-    localStorage.setItem("list", JSON.stringify(this.state.list));
+    localStorage.setItem('list', JSON.stringify(this.state.list));
   }
 
-  updateInput = event => {
-    this.setState({ newItem: event.target.value  });
+  updateInput = (event) => {
+    this.setState({ newItem: event.target.value });
   }
 
-  handleAddItem = e => {
+  handleAddItem = (e) => {
     e.preventDefault();
 
     const newItem = {
       id: 1 + Math.random(),
-      value: this.state.newItem.slice()
+      value: this.state.newItem.slice(),
     };
 
     addItem(newItem)
-    .then(item => {
-      const list = [...this.state.list];
-      list.push(item);
-      this.setState({
-        list,
-        newItem: "",
-        modalOpen: false,
+      .then((item) => {
+        const list = [...this.state.list];
+        list.push(item);
+        this.setState({
+          list,
+          newItem: '',
+          modalOpen: false,
+        });
       });
-    })
   }
 
-  handleDeleteItem = id => {
+  handleDeleteItem = (id) => {
     deleteItem(id)
-    .then(item => {
-      const list = [...this.state.list];
-      const updatedList = list.filter(item => item.id !== id);
-      this.setState({ list: updatedList });
-    })
+      .then((item) => {
+        const list = [...this.state.list];
+        const updatedList = list.filter(item => item.id !== id);
+        this.setState({ list: updatedList });
+      });
   }
 
   openModal = () => {
@@ -100,23 +90,21 @@ class App extends Component {
             {this.state.list.length === 1 ? ' item' : ' items'}
           </p>
           <List>
-            {this.state.list.map(item => {
-              return (
+            {this.state.list.map(item => (
                 <ListItem
                   key={item.id}
                   id={item.id}
                   value={item.value}
                   removeItem={this.handleDeleteItem}
                 />
-              );
-            })}
+            ))}
           </List>
           <button className="add-button" type="button" onClick={() => this.openModal()}>
             Add Item
           </button>
         </section>
-        {this.state.modalOpen &&
-        <Modal
+        {this.state.modalOpen
+        && <Modal
           inputValue={this.state.newItem}
           handleAddItem={this.handleAddItem}
           handleCancel={this.closeModal}
