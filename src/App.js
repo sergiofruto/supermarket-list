@@ -3,6 +3,7 @@ import uuid from 'uuid';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import Modal from 'components/Modal';
+import Loader from 'components/Loader';
 import { getAllItems, addItem, deleteItem } from './api';
 import './App.css';
 
@@ -57,6 +58,7 @@ class App extends Component {
         list: [...this.state.list, item],
         newItem: '',
         modalOpen: false,
+        isLoading: false,
       }))
       .catch(err => this.setState({ error: err }));
   }
@@ -78,6 +80,14 @@ class App extends Component {
     this.setState({ modalOpen: false });
   }
 
+  renderContent() {
+    if (this.state.isLoading) {
+      return <Loader />;
+    }
+
+    return this.state.list.length < 1 && <p className="empty-list">List is empty</p>;
+  }
+
   render() {
     return (
       <main className="app">
@@ -87,9 +97,7 @@ class App extends Component {
             {this.state.list.length}
             {this.state.list.length === 1 ? ' item' : ' items'}
           </p>
-          {this.state.list.length < 1
-            && <p className="empty-list">List is empty</p>
-          }
+          {this.renderContent()}
           <List>
             {this.state.list.map(item => (
               <ListItem
