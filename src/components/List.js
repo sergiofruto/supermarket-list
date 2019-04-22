@@ -1,11 +1,9 @@
 import React from 'react';
 
-const List = ({children}) => {
-  return (
-    <ul className="List">
-      {children}
-    </ul>
-  );
-};
+const List = ({ children }) => (
+  <ul className="list">
+    {children}
+  </ul>
+);
 
 export default List;
