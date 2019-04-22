@@ -6,6 +6,7 @@ const Modal = ({
   handleCancel,
   handleInputChange,
   disabledButton,
+  isLoading,
 }) => (
   <div className="overlay">
     <div className="overlay-content">
@@ -21,9 +22,10 @@ const Modal = ({
           <button className="btn" onClick={handleCancel}>
             Cancel
           </button>
-          <button className="btn blue"
+          <button
+            className="btn blue"
             onClick={handleAddItem}
-            disabled={disabledButton}
+            disabled={disabledButton || isLoading ? true : false}
           >
             Add
           </button>

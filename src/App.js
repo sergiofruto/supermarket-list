@@ -37,23 +37,22 @@ class App extends Component {
       });
   }
 
-  saveStateToLocalStorage() {
-    localStorage.setItem('list', JSON.stringify(this.state.list));
-  }
-
   updateInput = (event) => {
     this.setState({ newItem: event.target.value });
   }
 
   handleAddItem = (e) => {
     e.preventDefault();
-
-    const newItem = {
+    this.setState({
+      isLoading: true,
+    });
+    const { newItem } = this.state;
+    const newItemVal = {
       id: uuid.v4(),
-      value: this.state.newItem.slice(),
+      value: newItem.slice(),
     };
 
-    addItem(newItem)
+    addItem(newItemVal)
       .then(item => this.setState({
         list: [...this.state.list, item],
         newItem: '',
@@ -69,7 +68,8 @@ class App extends Component {
         const list = [...this.state.list];
         const updatedList = list.filter(item => item.id !== id);
         this.setState({ list: updatedList });
-      });
+      })
+      .catch(err => this.setState({ error: err }));
   }
 
   openModal = () => {
@@ -78,6 +78,10 @@ class App extends Component {
 
   closeModal = () => {
     this.setState({ modalOpen: false });
+  }
+
+  saveStateToLocalStorage() {
+    localStorage.setItem('list', JSON.stringify(this.state.list));
   }
 
   renderContent() {
@@ -89,17 +93,24 @@ class App extends Component {
   }
 
   render() {
+    const {
+      list,
+      newItem,
+      modalOpen,
+      isLoading,
+    } = this.state;
+
     return (
       <main className="app">
         <section className="container">
           <h1 className="app-healine">Supermarket List</h1>
           <p className="counter">
-            {this.state.list.length}
-            {this.state.list.length === 1 ? ' item' : ' items'}
+            {list.length}
+            {list.length === 1 ? ' item' : ' items'}
           </p>
           {this.renderContent()}
           <List>
-            {this.state.list.map(item => (
+            {list.map(item => (
               <ListItem
                 key={item.id}
                 id={item.id}
@@ -112,14 +123,17 @@ class App extends Component {
             Add Item
           </button>
         </section>
-        {this.state.modalOpen
-        && <Modal
-          inputValue={this.state.newItem}
-          handleAddItem={this.handleAddItem}
-          handleCancel={this.closeModal}
-          handleInputChange={this.updateInput}
-          disabledButton={!this.state.newItem.length}
-        />
+        {modalOpen
+          && (
+            <Modal
+              inputValue={newItem}
+              handleAddItem={this.handleAddItem}
+              handleCancel={this.closeModal}
+              handleInputChange={this.updateInput}
+              disabledButton={!newItem.length}
+              isLoading={isLoading}
+            />
+          )
         }
       </main>
     );

@@ -178,11 +178,18 @@ body {
   cursor: pointer;
   transition: transform .2s ease-in;
   font-weight: 500;
+  transition: all .45s ease-out;
 }
 
 .btn.blue {
   border: 1px solid var(--color-blue);
   color: var(--color-blue);
+}
+
+.btn.blue:hover,
+.btn.blue:focus {
+  background-color: var(--color-blue);
+  color: var(--color-white);
 }
 
 .btn:disabled {
@@ -192,6 +199,12 @@ body {
   cursor: not-allowed;
 }
 
+.btn:disabled:hover,
+.btn:disabled:focus {
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  color: var(--color-dark-gray);
+}
 
 .loader,
 .loader:before,
