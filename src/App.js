@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import Modal from 'components/Modal';
@@ -47,7 +48,7 @@ class App extends Component {
     e.preventDefault();
 
     const newItem = {
-      id: 1 + Math.random(),
+      id: uuid.v4(),
       value: this.state.newItem.slice(),
     };
 
