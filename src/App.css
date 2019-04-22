@@ -44,6 +44,11 @@ body {
   color: dimgray;
 }
 
+.empty-list {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
 .list {
   display: flex;
   flex-direction: column;

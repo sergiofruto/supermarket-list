@@ -87,6 +87,9 @@ class App extends Component {
             {this.state.list.length}
             {this.state.list.length === 1 ? ' item' : ' items'}
           </p>
+          {this.state.list.length < 1
+            && <p className="empty-list">List is empty</p>
+          }
           <List>
             {this.state.list.map(item => (
               <ListItem
