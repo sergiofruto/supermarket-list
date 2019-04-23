@@ -8,16 +8,12 @@ import { getAllItems, addItem, deleteItem } from './api';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      list: [],
-      isLoading: true,
-      newItem: '',
-      modalOpen: false,
-    };
-  }
+  state = {
+    list: [],
+    isLoading: true,
+    newItem: '',
+    modalOpen: false,
+  };
 
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
