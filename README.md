@@ -40,4 +40,4 @@ Use a service like https://zeit.co/now or https://surge.sh/ to deploy the app. S
 #### `npm run start`
 
 
-### [Now Deploy Link](https://supermarket-list-lhlyybbavg.now.sh/)
+### [Now Deploy Link](https://supermarket-list-ckxfzjgreg.now.sh/)
