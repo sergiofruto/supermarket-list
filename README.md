@@ -1,6 +1,6 @@
 # Worcket Challenge - Simple React App
 
-##Requirements
+## Requirements
 Create a React app that allows the user to make a supermarket list.
 
 ### Specs:
