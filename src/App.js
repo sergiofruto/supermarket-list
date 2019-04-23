@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
-import List from 'components/List';
-import ListItem from 'components/ListItem';
-import Modal from 'components/Modal';
-import Loader from 'components/Loader';
+import List from './components/List';
+import ListItem from './components/ListItem';
+import Modal from './components/Modal';
+import Loader from './components/Loader';
 import { getAllItems, addItem, deleteItem } from './api';
 import './App.css';
 
