@@ -84,14 +84,6 @@ class App extends Component {
     localStorage.setItem('list', JSON.stringify(this.state.list));
   }
 
-  renderContent() {
-    if (this.state.isLoading) {
-      return <Loader />;
-    }
-
-    return this.state.list.length < 1 && <p className="empty-list">List is empty</p>;
-  }
-
   render() {
     const {
       list,
@@ -104,11 +96,14 @@ class App extends Component {
       <main className="app">
         <section className="container">
           <h1 className="app-healine">Supermarket List</h1>
-          <p className="counter">
-            {list.length}
-            {list.length === 1 ? ' item' : ' items'}
-          </p>
-          {this.renderContent()}
+          {!isLoading
+            ? (
+              <p className="counter">
+                {list.length >= 1 ? `${list.length} items` : 'List is empty'}
+              </p>
+            )
+            : <Loader />
+          }
           <List>
             {list.map(item => (
               <ListItem
