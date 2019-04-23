@@ -5,6 +5,9 @@
   --color-white: #FFFFFF;
   --color-black: #222228;
   --color-blue: #00A8FF;
+  --color-red: #FFBABA;
+  --color-bright-red: #D8000C;
+
 }
 
 body {
@@ -162,6 +165,10 @@ body {
   color: rgba(0,0,0,.7);
 }
 
+button:focus {
+  outline: none;
+}
+
 .button-row {
   display: flex;
   justify-content: space-between
@@ -189,6 +196,17 @@ body {
 .btn.blue:hover,
 .btn.blue:focus {
   background-color: var(--color-blue);
+  color: var(--color-white);
+}
+
+.btn.red {
+  border: 1px solid var(--color-red);
+  color: var(--color-bright-red);
+}
+
+.btn.red:hover,
+.btn.red:focus {
+  background-color: var(--color-red);
   color: var(--color-white);
 }
 

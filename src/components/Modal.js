@@ -19,7 +19,7 @@ const Modal = ({
           onChange={handleInputChange}
         />
         <div className="button-row">
-          <button className="btn" onClick={handleCancel}>
+          <button className="btn red" onClick={handleCancel}>
             Cancel
           </button>
           <button
